@@ -8,10 +8,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # loading the CSV file and storing the human-reported hypnogram as a separate array
-per_id = "S011"
-df = pd.read_csv(f'/Users/mridulagarg/Desktop/Mridula/Research/Sleepy_brain/{per_id}_PSG_df_updated.csv')
+per_id = "S011" #in case the dataset has a huge number of participants
+df = pd.read_csv('example_dataset.csv')
 
-# down-sampling the human-scored hypnogram to 30s-epochs (removing the last epoch since it is extra)
+# down-sampling the human-scored hypnogram to 30s-epochs (removing the last epoch since it has insufficient datapoints)
 sfreq = 100
 human_hypno = df[df["Sleep_Stage"] != "P"][["Sleep_Stage"]]
 human_hypno_30s = human_hypno[::30 * sfreq].reset_index(drop=True)
